@@ -1,4 +1,4 @@
-package com.mtvu.springsecurityjwt.models.user;
+package com.mtvu.springsecurityjwt.models;
 
 import com.mtvu.springsecurityjwt.entities.Authority;
 import com.mtvu.springsecurityjwt.entities.UserInfo;

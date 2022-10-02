@@ -1,7 +1,7 @@
 package com.mtvu.springsecurityjwt.services;
 
 import com.mtvu.springsecurityjwt.entities.UserInfo;
-import com.mtvu.springsecurityjwt.models.user.MyUserDetails;
+import com.mtvu.springsecurityjwt.models.MyUserDetails;
 import com.mtvu.springsecurityjwt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,11 +18,10 @@ public class MyUserDetailsService implements UserDetailsService {
     UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<UserInfo> user = userRepository.findByUserName(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<UserInfo> user = userRepository.findByUserName(username);
 
-        user.orElseThrow(() -> new UsernameNotFoundException("User not found: " + s));
-
-        return user.map(MyUserDetails::new).get();
+        return user.map(MyUserDetails::new).orElseThrow(
+                () -> new UsernameNotFoundException("User not found: " + username));
     }
 }

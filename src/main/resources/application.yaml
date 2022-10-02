@@ -10,3 +10,16 @@ spring:
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
+
+jwt:
+  private:
+    key: classpath:rsa.privatekey
+  public:
+    key: classpath:rsa.publickey
+  expiry: 36000
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: TRACE
